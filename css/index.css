@@ -1,0 +1,24 @@
+body{
+  
+}
+.logo_taux:hover{
+  cursor:pointer;
+}
+#taux{
+  position: relative;
+}
+#logo{
+  width: 30%;
+  position: absolute;
+  left: 5%;
+}
+#graph{
+  width: 30%;
+  height: 10%;
+  position: absolute;
+  background-color: blue;
+  left:35%;
+}
+#logo_temperature{
+  padding-left: 8%;
+}
