@@ -1,18 +1,7 @@
-<div class="panel panel-default">
-  <div class="panel-heading">Liste des sondages</div>
-  <div class="panel-body">
-    <ul id="global-polls">
-    </ul>
-  </div>
-</div>
-<div class="panel panel-default">
-  <div class="panel-heading">Liste de mes sondages</div>
-  <div class="panel-body">
-    <ul id="own-polls">
-    </ul>
-    <button type="button" class="btn btn-primary pull-right">
-      Nouveau
-      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-    </button>
-  </div>
+<div class="login">
+    <input type="text" placeholder="username" name="user"><br>
+    <input type="password" placeholder="password" name="password"><br>
+    <input type="button" value="Login">
+    <input type="button" value="inscription" onclick="ajaxRequest('GET','php/request.php/module/inscription',loadHtmlAndJs);">
+    <input type="button" value="Recupérer mon mot de passe" onclick="ajaxRequest('GET','php/request.php/module/recuperation',loadHtmlAndJs);">
 </div>

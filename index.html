@@ -12,31 +12,19 @@
 <body>
   <div class='page-header container'>
     <h1>Isen's Lab<small>  Pour un monitoring parfait</small></h1>
-    <button>Lab Rennes</button>
+    <button onclick="ajaxRequest('GET','php/request.php/module/taux',loadHtmlAndJs,'labo=Rennes')">Lab Rennes</button>
     <button>Lab Brest</button>
-    <button>Lab Connexion</button>
+    <button onclick="ajaxRequest('GET','php/request.php/module/connexion',loadHtmlAndJs)">Lab Connexion</button>
+    <button onclick="ajaxRequest('GET','php/request.php/module/mon_compte',loadHtmlAndJs)">Mon compte</button>
   </div>
-  <div id='alerte' class='container'>
-    <div class="alert alert-success" role="alert">
-      <h3>Pas d'alerte en cours</h3>
-    </div>
+  <div id='connexion'>
+  </div>
+  <div id='alerte'>
   </div>
   <div id='taux' class=''>
-    <div id="logo">
-      <div class="logo_taux" id='logo_temperature'>
-        <img src="images/temperature.png" height="120"></img>
-        Temperature
-      </div>
-      <div class="logo_taux">
-        <img src="images/humidite.png" height="120"></img>
-        Humidité
-      </div>
-      <div class="logo_taux">
-        <img src="images/CO2.png" height="120"></img>
-        CO2
-      </div>
-    </div>
-    <div id='graph'>C'est le graphe</div>
+  </div>
+  <div id='graph'>
+  </div>
   </div>
   <div id='utilisateurs' class=''>
   </div>

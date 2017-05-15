@@ -11,25 +11,36 @@
     if($moduleName=='connexion'){
       sendHtmlAndJsData('connexion', $request, $moduleName);
     }
+		if($moduleName=='inscription'){
+			sendHtmlAndJsData('inscription', $request, $moduleName);
+		}
+		if($moduleName=='recuperation'){
+			sendHtmlAndJsData('recuperation', $request, $moduleName);
+		}
+		if($moduleName=='alerte'){
+			sendHtmlAndJsData('alerte', $request, $moduleName);
+		}
+		if($moduleName=='mon_compte'){
+			sendHtmlAndJsData('mon_compte', $request, $moduleName);
+		}
+    if($moduleName=='taux'){
+      //if($_GET['labo']==Rennes){
+        sendHtmlAndJsData('taux', $request, $moduleName);
+      //}
+    }
 	}
 	else
   {
-    /*$request=explode('/', $request);
+    $request=explode('/', $request);
     $requestType = $_SERVER['REQUEST_METHOD'];
-    if($request[0]=='polls'){
-      $data=NULL;
-      if($requestType=='GET'){
-        if(isset($_GET['login']))
-          $data=dbRequestPolls($db,-1,$_GET['login']);
-        else
-          $data=dbRequestPolls($db);
+    if($request[0]=='taux'){
+			$type=$_GET['type'];
+			$data=array('type'=>$type);
       }
-      if($data != NULL)
-        sendJsonData($data);
-    }*/
+    }
+		sendJsonData($data);
 		header('HTTP/1.1 400 Bad request');
 		exit;
-	}
 
 	//----------------------------------------------------------------------------
 	//--- sendHtmlAndJsData ------------------------------------------------------
