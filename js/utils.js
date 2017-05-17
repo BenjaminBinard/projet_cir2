@@ -6,6 +6,9 @@ function ajaxRequest(type, request, callback, data=null){
   if(type=='GET'){
     request += '?' + data;
   }
+  if(type=='PUT'){
+    request += '?' + data;
+  }
   xhr.open(type, request, true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.onreadystatechange = function(){
@@ -51,4 +54,12 @@ function loadHtmlAndJs(ajaxResponse){
   data = JSON.parse(ajaxResponse);
   $('#'+data.divId).load(data.html);
   $.getScript(data.js);
+}
+
+function contour_rouge(element){
+  element.setAttribute('style', 'border-top:2px solid red;border-bottom:2px solid red;border-left:2px solid red;border-right:2px solid red;');
+}
+
+function contour_vert(element){
+  element.setAttribute('style', 'border-top:2px solid green;border-bottom:2px solid green;border-left:2px solid green;border-right:2px solid green;');
 }

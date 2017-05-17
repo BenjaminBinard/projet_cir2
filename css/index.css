@@ -21,8 +21,13 @@ body{
 #logo_temperature{
   padding-left: 8%;
 }
-.login,.inscription,.connexion,.recuperation{
+.login,.inscription,.connexion,.recuperation,#recuperation{
   left:20%;
   right: auto;
   position: relative;
+}
+#modifier_contact{
+  background-color: red;
+  width: 80%;
+  height: 30%;
 }

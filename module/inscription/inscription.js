@@ -4,11 +4,73 @@ function chargement_inscription(){
   console.log("On est la ici a!");
   var texte;
   var body;
+}
 
-  //body=document.getElementById('connexion')
-  //body.innerHTML='';
-  texte=document.getElementById('connexion');
-  texte.innerHTML='';
-  texte.innerHTML="<div class='inscription'><input type='text' placeholder='username' name='user'><br><input type='text' placeholder='password' name='password'><br><input type='text' placeholder='re taper password' name='password1'><br><input type='text' placeholder='mail' name='mail'><br><input type='button' value='Inscription'></div>";
+function verification_champs(){
+  var nom = document.getElementById('nom');
+  var prenom = document.getElementById('prenom');
+  var mot_de_passe=document.getElementById('password');
+  var mot_de_passe_1=document.getElementById('password1');
+  var mail=document.getElementById('mail');
 
+  var bool_nom;
+  var bool_prenom;
+  var bool_mail;
+  var bool_pass_1;
+  var bool_pass_2;
+  var bool_mail;
+
+  if(mot_de_passe_1.value!=mot_de_passe.value){
+    console.log("Le mot de passe n'est pas bon !");
+    contour_rouge(mot_de_passe_1);
+    bool_pass_1='FALSE';
+  }else{
+    contour_vert(mot_de_passe_1);
+    contour_vert(mot_de_passe);
+    bool_pass_1='TRUE';
+  }
+  if(mot_de_passe.value==''){
+    contour_rouge(mot_de_passe);
+    contour_rouge(mot_de_passe_1);
+    bool_pass_2='FALSE';
+  }else{
+    bool_pass_2='TRUE';
+  }
+
+  if(nom.value==''){
+    contour_rouge(nom);
+    bool_nom='FALSE';
+  }else{
+    contour_vert(nom);
+    bool_nom='TRUE';
+  }
+  if(prenom.value==''){
+    contour_rouge(prenom);
+    bool_prenom='FALSE';
+  }else{
+    contour_vert(prenom);
+    bool_prenom='TRUE';
+  }
+
+  var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+  if(!regex.test(mail.value)){
+    contour_rouge(mail);
+    bool_mail='FALSE';
+  }
+  else{
+    contour_vert(mail);
+    bool_mail='TRUE';
+  }
+  console.log(prenom.value);
+  console.log(nom.value);
+  console.log(mail.value);
+  console.log(mot_de_passe.value);
+  if(bool_mail=='TRUE' && bool_nom=='TRUE' && bool_prenom=='TRUE' && bool_pass_1=='TRUE' && bool_pass_2=='TRUE'){
+    ajaxRequest('PUT','php/request.php/inscription', sendInscription, 'nom='+nom.value+'&prenom='+prenom.value+'&password='+mot_de_passe.value+'&mail='+mail.value); //
+  }
+}
+
+function sendInscription(ajaxResponse){
+  console.log(ajaxResponse);
+  //ajax request mon profile
 }

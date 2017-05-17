@@ -1,13 +1,35 @@
 chargement_recuperation();
 
 function chargement_recuperation(){
-  var texte="<div id='recuperation'><input type='text' placeholder='e-mail' name='mail'><br><input type='button' value='Recupérer mon mot de passe'><input id='inscription' type='button' value='inscription'></div>";
-  var body=document.getElementById('connexion');
-  body.innerHTML=texte;
+  var texte;
 
-  var node=document.getElementById('inscription')
-  var onclick = document.createAttribute("onclick");       // Create a "class" attribute
-  onclick.value = "ajaxRequest('GET','php/request.php/module/inscription',loadHtmlAndJs)";                           // Set the value of the class attribute
-  node.setAttributeNode(onclick);
+  texte=document.getElementById('alerte');
+  texte.innerHTML='';
+  texte=document.getElementById('graph');
+  texte.innerHTML='';
+  texte=document.getElementById('mon_compte');
+  texte.innerHTML='';
+  texte=document.getElementById('taux');
+  texte.innerHTML='';
+  texte=document.getElementById('utilisateurs');
+  texte.innerHTML='';
 
+}
+
+function verif_recuperation(){
+  console.log("chargement");
+  var mail=document.getElementById('mail');
+  var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+  if(!regex.test(mail.value)){
+    contour_rouge(mail);
+    alert('Veuillez entrer une adresse mail valide.');
+  }
+  else{
+    ajaxRequest('PUT','php/request.php/recuperation',recuperation,'mail='+mail.value);
+  }
+}
+
+function recuperation(ajaxResponse){
+  alert("Un mail avec votre mot de passe vous à été envoyé.");
+  ajaxRequest('GET', 'php/request.php/module/connexion', loadHtmlAndJs);
 }
