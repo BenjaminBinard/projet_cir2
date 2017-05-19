@@ -1,5 +1,6 @@
 <?php
 include 'database.php';
+include 'graph.php';
 
 $request = substr($_SERVER['PATH_INFO'], 1);
 
@@ -8,32 +9,28 @@ if (is_dir('../'.$request))
 {
 	// We extract the module name.
 	$moduleName = substr($request, strrpos($request, '/') + 1);
-	if($moduleName=='connexion' || $moduleName=='recuperation' || $moduleName=='inscription'){
+	if($moduleName=='connexion' || $moduleName=='recuperation' || $moduleName=='inscription')
 		sendHtmlAndJsData('connexion', $request, $moduleName);
-	}
-	if($moduleName=='header'){
+	if($moduleName=='header')
 		sendHtmlAndJsData('header', $request, $moduleName);
-	}
-	if($moduleName=='alerte'){
-		sendHtmlAndJsData('alerte', $request, $moduleName);
-	}
-	if($moduleName=='mon_compte'){
+	if($moduleName=='mon_compte')
 		sendHtmlAndJsData('mon_compte', $request, $moduleName);
-	}
-	if($moduleName=='taux'){
-		//if($_GET['labo']==Rennes){
+	if($moduleName=='lab')
+		sendHtmlAndJsData('lab', $request, $moduleName);
+	if($moduleName=='alerte')
+		sendHtmlAndJsData('alerte', $request, $moduleName);
+	if($moduleName=='taux')
 		sendHtmlAndJsData('taux', $request, $moduleName);
-		//}
-	}
+	if($moduleName=='graph')
+		sendHtmlAndJsData('graph', $request, $moduleName);
 }
 else
 {
 	$request=explode('/', $request);
 	$requestType = $_SERVER['REQUEST_METHOD'];
 	if($requestType=='GET'){
-		if($request[0]=='taux'){
-			$type=$_GET['type'];
-			$data=array('type'=>$type);
+		if($request[0]=='graph'){
+			$data=array('donnees'=> data_chart($_GET['type']), 'type'=>$_GET['type']);
 		}
 		if($request[0]=='is_connected'){
 			if(isset($_SESSION['mail'])){
@@ -47,6 +44,11 @@ else
 				unset($_SESSION['mail']);
 				session_destroy();
 				$data='FIN';
+			}
+		}
+		if($request[0]=='mon_compte'){
+			if(isset($_SESSION['mail'])){
+				$data=mes_donnees($_SESSION['mail']);
 			}
 		}
 		sendJsonData($data);
@@ -67,11 +69,23 @@ else
 			if($result=='TRUE'){
 				$_SESSION['mail']=$mail;
 				$_SESSION['password']=$password;
-			}
+				sendJsonData('TRUE');
+			}else
+				sendJsonData('FALSE');
 		}
 		if($request[0]=='recuperation'){
 			$mail=$_GET['mail'];
 			sendJsonData($mail);
+		}
+		if($request[0]=='mon_compte'){
+			if(isset($_GET['nom']))
+				infosUpdate($_GET['nom'],'USER', 'LASTNAME');
+			if(isset($_GET['prenom']))
+					infosUpdate($_GET['prenom'],'USER', 'FIRSTNAME');
+			if(isset($_GET['mail']))
+				infosUpdate($_GET['mail'], 'USER', 'MAIL_USER');
+			if(isset($_GET['password']))
+				infosUpdate($_GET['password'], 'USER', 'PASS');
 		}
 	}
 }

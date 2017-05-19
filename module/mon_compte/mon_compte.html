@@ -1,13 +1,25 @@
 <div id='mon_compte'>
   <div id='modifier_contact'>
-      <span>Chuck Norris</span>
+      <span>Chuck Norris</span><br>
       <span>Second utilisateur de la salle</span>
     </div>
-    <div id='modifier_mes_infos'>
-      <input type='textearea' name='mot_de_passe'></input>
-      <input type='textearea' name='modifier_login'></input>
-      <input type='textearea' name='mot_de_passe'></input>
+    <div id='mes_infos'>
+      <h3>Mes informations</h3>
+      <h5 id='nom'></h5>
+      <h5 id='prenom'></h5>
+      <h5 id='mail'></h5>
     </div>
-    <div id='chambres'>
+    <div id='modifier_mes_infos'>
+      <br><br>
+      <h3>Modifier mes informations</h3>
+      <h5>Modifier Nom et Prenom</h5>
+      <input type='textearea' id='nom' placeholder='nom'></input><br>
+      <input type='textearea' id='prenom' placeholder='prenom'></input><br><br>
+      <h5>Modifier Mot de passe</h5>
+      <input type='textearea' id='mot_de_passe' placeholder='mot de passe'></input><br>
+      <input type='textearea' id='mot_de_passe_1' placeholder='Resaisir mot de passe'></input><br><br>
+      <h5>Modifier adresse mail</h5>
+      <input type='textearea' id='mail' placeholder='mail'></input><br><br>
+      <button id='modifier' onclick="modifier_mes_infos()">Modifier les champs remplis</button>
     </div>
 </div>

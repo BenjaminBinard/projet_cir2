@@ -63,3 +63,28 @@ function contour_rouge(element){
 function contour_vert(element){
   element.setAttribute('style', 'border-top:2px solid green;border-bottom:2px solid green;border-left:2px solid green;border-right:2px solid green;');
 }
+
+function verification_mail(mail, type){
+  var bool_mail;
+  if(type==1){
+    var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+    if(!regex.test(mail.value)){
+      contour_rouge(mail);
+      bool_mail='FALSE';
+    }
+    else{
+      contour_vert(mail);
+      bool_mail='TRUE';
+    }
+  }
+  if(type==2){
+    var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+    if(!regex.test(mail)){
+      bool_mail='FALSE';
+    }
+    else{
+      bool_mail='TRUE';
+    }
+  }
+  return bool_mail;
+}

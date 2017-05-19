@@ -51,16 +51,7 @@ function verification_champs(){
     contour_vert(prenom);
     bool_prenom='TRUE';
   }
-
-  var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
-  if(!regex.test(mail.value)){
-    contour_rouge(mail);
-    bool_mail='FALSE';
-  }
-  else{
-    contour_vert(mail);
-    bool_mail='TRUE';
-  }
+  bool_mail=verification_mail(mail,1);
   console.log(prenom.value);
   console.log(nom.value);
   console.log(mail.value);

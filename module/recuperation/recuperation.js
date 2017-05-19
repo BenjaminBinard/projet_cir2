@@ -19,9 +19,8 @@ function chargement_recuperation(){
 function verif_recuperation(){
   console.log("chargement");
   var mail=document.getElementById('mail');
-  var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
-  if(!regex.test(mail.value)){
-    contour_rouge(mail);
+  var bool_mail=verification_mail(mail,1);
+  if(bool_mail=='FALSE'){
     alert('Veuillez entrer une adresse mail valide.');
   }
   else{

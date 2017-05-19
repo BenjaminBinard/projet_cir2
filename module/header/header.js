@@ -10,7 +10,7 @@ function is_connected(ajaxResponse){
     body.innerHTML=texte;
 
     var attribute=document.createAttribute("onclick");
-    attribute.value="ajaxRequest('GET','php/request.php/module/taux',loadHtmlAndJs,'labo=Rennes')";
+    attribute.value="ajaxRequest('GET','php/request.php/module/lab',loadHtmlAndJs,'labo=Rennes')";
     document.getElementById('lab_rennes').setAttributeNode(attribute);
 
     var attribute1=document.createAttribute("onclick");
@@ -34,5 +34,6 @@ function is_connected(ajaxResponse){
 }
 
 function deconnexion(ajaxResponse){
-  console.log(ajaxResponse);
+  document.getElementById('if_connected').innerHTML='';
+  ajaxRequest('GET','php/request.php/is_connected',is_connected);
 }

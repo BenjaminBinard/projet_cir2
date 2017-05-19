@@ -4,16 +4,11 @@ function chargement_connexion(){
   var texte;
   var body;
 
-  texte=document.getElementById('taux');
-  texte.innerHTML='';
-  texte=document.getElementById('alerte');
-  texte.innerHTML='';
-  texte=document.getElementById('graph');
-  texte.innerHTML='';
-  texte=document.getElementById('mon_compte');
-  texte.innerHTML='';
-  texte=document.getElementById('utilisateurs');
-  texte.innerHTML='';
+  document.getElementById('taux').innerHTML='';
+  document.getElementById('alerte').innerHTML='';
+  document.getElementById('graph').innerHTML='';
+  document.getElementById('mon_compte').innerHTML='';
+  document.getElementById('utilisateurs').innerHTML='';
 
 }
 
@@ -23,12 +18,13 @@ function verif_connexion(){
   var bool_mail;
   var bool_pass;
 
-  if(mail.value==''){
-    bool_mail='FALSE';
-    contour_rouge(username);
-  }
-  else
+  if(mail.value!='' && verification_mail(mail,1)=='TRUE'){
     bool_mail='TRUE';
+  }
+  else{
+    bool_mail='FALSE';
+    contour_rouge(mail);
+  }
   if(mot_de_passe.value==''){
     bool_pass='FALSE';
     contour_rouge(mot_de_passe);
@@ -37,12 +33,15 @@ function verif_connexion(){
     bool_pass='TRUE';
 
   if(bool_mail=='TRUE' && bool_pass=='TRUE'){
-    console.log('champs non vide');
     ajaxRequest('PUT','php/request.php/connexion',connexion,'mail='+mail.value+'&password='+mot_de_passe.value);
   }
 }
 
 function connexion(ajaxResponse){
-  console.log("Check");
-  console.log(ajaxResponse);
+  if(JSON.parse(ajaxResponse)=='TRUE'){
+    ajaxRequest('GET','php/request.php/module/mon_compte',loadHtmlAndJs);
+    ajaxRequest('GET','php/request.php/is_connected',is_connected);
+  }
+  //document.getElementById('if_not_connected').innerHTML='';
+  //ajaxRequest('GET','php/request.php/is_connected',is_connected);
 }

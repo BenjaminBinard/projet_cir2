@@ -27,7 +27,13 @@ body{
   position: relative;
 }
 #modifier_contact{
-  background-color: red;
+  background-color: lightgreen;
   width: 80%;
   height: 30%;
+}
+#modifier_mes_infos, #mes_infos{
+  left:20%;
+  right: auto;
+  width: 40%;
+  position: relative;
 }

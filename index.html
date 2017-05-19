@@ -10,28 +10,25 @@
   <link rel="stylesheet" type='text/css' href="css/index.css"/>
 </head>
 <body>
-  <div class='page-header container'>
-    <h1>Isen's Lab<small>  Pour un monitoring parfait</small></h1>
-    <button onclick="ajaxRequest('GET','php/request.php/module/taux',loadHtmlAndJs,'labo=Rennes')">Lab Rennes</button>
-    <button>Lab Brest</button>
-    <button onclick="ajaxRequest('GET','php/request.php/module/connexion',loadHtmlAndJs)">Lab Connexion</button>
-    <button onclick="ajaxRequest('GET','php/request.php/module/mon_compte',loadHtmlAndJs)">Mon compte</button>
+  <div id='header'>
   </div>
   <div id='connexion'>
   </div>
   <div id='alerte'>
   </div>
-  <div id='taux' class=''>
+  <div id='taux'>
   </div>
   <div id='graph'>
   </div>
+  <div id='utilisateurs'>
   </div>
-  <div id='utilisateurs' class=''>
+  <div id='mon_compte'>
   </div>
   <script src="js/jquery.min.js" type="text/javascript"></script>
   <script src="js/jquery.cookie.js" type="text/javascript"></script>
   <script src="js/bootstrap.min.js" type="text/javascript"></script>
   <script src="js/utils.js" type="text/javascript"></script>
   <script src="js/loading.js" type="text/javascript"></script>
+  <script src="//www.chartjs.org/assets/Chart.min.js"></script>
 </body>
 </html>
