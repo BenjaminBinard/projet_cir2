@@ -88,3 +88,8 @@ function verification_mail(mail, type){
   }
   return bool_mail;
 }
+
+function sleep(ms) {
+  console.log("ECHO");
+  return new Promise(resolve => setTimeout(resolve, ms));
+}

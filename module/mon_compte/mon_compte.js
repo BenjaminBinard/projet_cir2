@@ -29,6 +29,9 @@ function modifier_mes_infos(){
 }
 function afficher_mes_infos(ajaxResponse){
   data=JSON.parse(ajaxResponse);
+  if(data=='ERROR'){
+    alert("Vous tentez d'effectuer une action malicieuse !");
+  }
   document.getElementById('nom').innerHTML="Nom : "+data[0]['LASTNAME'];
   document.getElementById('prenom').innerHTML="Prenom : "+data[0]['FIRSTNAME'];
   document.getElementById('mail').innerHTML="Adresse mail : "+data[0]['mail'];

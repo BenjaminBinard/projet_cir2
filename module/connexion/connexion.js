@@ -38,10 +38,10 @@ function verif_connexion(){
 }
 
 function connexion(ajaxResponse){
-  if(JSON.parse(ajaxResponse)=='TRUE'){
+  var data=JSON.parse(ajaxResponse);
+  if(data['is_connected']=='TRUE'){
     ajaxRequest('GET','php/request.php/module/mon_compte',loadHtmlAndJs);
     ajaxRequest('GET','php/request.php/is_connected',is_connected);
+    $.cookie('login', data['mail']);
   }
-  //document.getElementById('if_not_connected').innerHTML='';
-  //ajaxRequest('GET','php/request.php/is_connected',is_connected);
 }

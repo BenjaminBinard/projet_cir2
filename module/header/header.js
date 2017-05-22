@@ -6,7 +6,7 @@ function is_connected(ajaxResponse){
   var texte;
   if(is_connected=='TRUE'){
     body=document.getElementById('if_connected');
-    texte="<button id='lab_rennes'>Lab Rennes</button><button id='lab_brest'>Lab Brest</button><button id='mon_compte_btn'>Mon compte</button><button id='deconnexion'>Deconnexion</button>";
+    texte="<button id='lab_rennes' class='btn btn-primary'>Lab Rennes</button><button id='lab_brest' class='btn btn-primary'>Lab Brest</button><button id='mon_compte_btn' class='btn btn-primary'>Mon compte</button><button id='deconnexion' class='btn btn-primary'>Deconnexion</button>";
     body.innerHTML=texte;
 
     var attribute=document.createAttribute("onclick");
@@ -22,14 +22,14 @@ function is_connected(ajaxResponse){
     document.getElementById('deconnexion').setAttributeNode(attribute2);
 
   }else{
-    body=document.getElementById('if_not_connected');
+    /*body=document.getElementById('if_not_connected');
     texte="<button id='connexion_btn'>Connexion</button>";
     body.innerHTML=texte;
 
     var attribute=document.createAttribute("onclick");
     attribute.value="ajaxRequest('GET','php/request.php/module/connexion',loadHtmlAndJs)";
-    document.getElementById('connexion_btn').setAttributeNode(attribute);
-    ajaxRequest('GET','php/request.php/module/connexion',loadHtmlAndJs)
+    document.getElementById('connexion_btn').setAttributeNode(attribute);*/
+    ajaxRequest('GET','php/request.php/module/connexion',loadHtmlAndJs);
   }
 }
 

@@ -23,6 +23,7 @@ if (is_dir('../'.$request))
 		sendHtmlAndJsData('taux', $request, $moduleName);
 	if($moduleName=='graph')
 		sendHtmlAndJsData('graph', $request, $moduleName);
+
 }
 else
 {
@@ -30,7 +31,9 @@ else
 	$requestType = $_SERVER['REQUEST_METHOD'];
 	if($requestType=='GET'){
 		if($request[0]=='graph'){
-			$data=array('donnees'=> data_chart($_GET['type']), 'type'=>$_GET['type']);
+			$type=$_GET['type'];
+			$nbr=$_GET['nbr'];
+			$data=array('donnees'=> data_chart($type, $nbr), 'type'=>$type, 'nbr'=>$nbr);
 		}
 		if($request[0]=='is_connected'){
 			if(isset($_SESSION['mail'])){
@@ -49,6 +52,8 @@ else
 		if($request[0]=='mon_compte'){
 			if(isset($_SESSION['mail'])){
 				$data=mes_donnees($_SESSION['mail']);
+			}else {
+				$data='ERROR';
 			}
 		}
 		sendJsonData($data);
@@ -69,9 +74,9 @@ else
 			if($result=='TRUE'){
 				$_SESSION['mail']=$mail;
 				$_SESSION['password']=$password;
-				sendJsonData('TRUE');
+				sendJsonData(array('is_connected'=>'TRUE','mail'=>$mail));
 			}else
-				sendJsonData('FALSE');
+				sendJsonData(array('is_connected'=>'FALSE'));
 		}
 		if($request[0]=='recuperation'){
 			$mail=$_GET['mail'];
@@ -98,6 +103,14 @@ else
 		// We create the data (Html and Js).
 		$data = array ('html' => $modulePath.'/'.$moduleName.'.html',
 		'divId' => $divId, 'js' => $modulePath.'/'.$moduleName.'.js');
+		sendJsonData($data);
+	}
+
+	function sendHtmlAndJsDataSpecial($divId, $modulePath, $moduleName, $type)
+	{
+		// We create the data (Html and Js).
+		$data = array ('html' => $modulePath.'/'.$moduleName.'.html',
+		'divId' => $divId, 'js' => $modulePath.'/'.$moduleName.'.js', 'type'=>$type);
 		sendJsonData($data);
 	}
 

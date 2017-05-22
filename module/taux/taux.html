@@ -1,14 +1,17 @@
 <div id="logo">
   <div class="logo_taux" id='logo_temperature'>
-    <img src="images/temperature.png" height="120" onclick="ajaxRequest('GET','php/request.php/graph',loadGraph,'type=temperature')"></img>
+    <img src="images/temperature.png" height="120" onclick="pre_loadGraph('temperature')"></img>
     Temperature
   </div>
   <div class="logo_taux">
-    <img src="images/humidite.png" height="120" onclick="ajaxRequest('GET','php/request.php/graph',loadGraph,'type=humidite')"></img>
+    <img src="images/humidite.png" height="120" onclick="pre_loadGraph('humidite')"></img>
     Humidité
   </div>
   <div class="logo_taux">
-    <img src="images/CO2.png" height="120" onclick="ajaxRequest('GET','php/request.php/graph',loadGraph,'type=CO2')"></img>
+    <img src="images/CO2.png" height="120" onclick="pre_loadGraph('CO2')"></img>
     CO2
+  </div>
+  <div>
+    <input type='text' id='nbr_points' value='20'></input>
   </div>
 </div>

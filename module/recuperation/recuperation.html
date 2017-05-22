@@ -1,5 +1,11 @@
 <div id='recuperation'>
-  <input type='text' placeholder='e-mail' id='mail'>
+  <div id='sub_recup'>
+  <div class="form-group">
+    <input type='text' placeholder='e-mail' id='mail' class="form-control">
+  </div>
+</div>
   <br>
-  <input type='button' value='Recuperer mon mot de passe' onclick="ajaxRequest('GET','php/request.php/recuperation',verif_recuperation)">
+  <div class='form-group'>
+    <input type='button' value='Recuperer mon mot de passe' onclick="ajaxRequest('GET','php/request.php/recuperation',verif_recuperation)" class="btn btn-primary">
+  </div>
 </div>

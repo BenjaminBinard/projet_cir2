@@ -56,19 +56,14 @@ function mes_donnees($mail){
   return $result;
 }
 
-function getGraph($type){
-  //$myData = new pData();
-  //$myData->addPoints(array(VOID,3,4,3,5));
-}
-
-function data_chart($type){
+function data_chart($type, $nbr){
   $db=dbConnect();
   if($type=='CO2')
-    $request="SELECT NUM, DTIME FROM `VALUE` WHERE TYPE='2' AND BETWEEN \'MAX(TYPE)\' AND \'MAX(TYPE)-15\'";
+    $request="SELECT NUM,DTIME FROM `VALUE` WHERE TYPE=2 ORDER BY DTIME DESC LIMIT $nbr";
   if($type=='humidite')
-    $request="SELECT NUM, DTIME FROM `VALUE` WHERE TYPE='3'";
+    $request="SELECT NUM,DTIME FROM `VALUE` WHERE TYPE=3 ORDER BY DTIME DESC LIMIT $nbr";
   if($type=='temperature')
-    $request="SELECT NUM, DTIME FROM `VALUE` WHERE TYPE='4'";
+    $request="SELECT NUM,DTIME FROM `VALUE` WHERE TYPE=4 ORDER BY DTIME DESC LIMIT $nbr";
   $statement=$db->prepare($request);
   $statement->execute();
   $result=$statement->fetchALL(PDO::FETCH_ASSOC);

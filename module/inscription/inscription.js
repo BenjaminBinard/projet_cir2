@@ -63,5 +63,5 @@ function verification_champs(){
 
 function sendInscription(ajaxResponse){
   console.log(ajaxResponse);
-  //ajax request mon profile
+  ajaxRequest('GET', 'php/request.php/module/mon_compte', loadHtmlAndJs);
 }
