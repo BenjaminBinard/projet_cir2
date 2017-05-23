@@ -1,17 +1,38 @@
 <div id="logo">
-  <div class="logo_taux" id='logo_temperature'>
-    <img src="images/temperature.png" height="120" onclick="pre_loadGraph('temperature')"></img>
-    Temperature
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="panel panel-default" onclick="pre_loadGraph('temperature')">
+        <img src="images/temperature.png" height="120" id='logo_temperature' ></img>
+        Temperature
+        <div class="panel-heading" id='temperature_taux'></div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="panel panel-default" id='logo_humidite' onclick="pre_loadGraph('humidite')">
+        <img src="images/humidite.png" height="120" ></img>
+        Humidité
+        <div id='humidite_taux' class="panel-heading"></div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="panel panel-default" id='logo_CO2' onclick="pre_loadGraph('CO2')">
+        <img src="images/CO2.png" height="120"></img>
+        CO2
+        <div id='CO2_taux' class="panel-heading"></div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <input type='text' id='nbr_points' value='20'></input>
+    </li>
+  </ul>
+</div>
+<div id='logo_horizontaux'>
+  <div id="logo_four" class="panel panel-default">
+    <img src="images/four_off.png" height="120" id="image_four">
+    <div id="four_titre" class="panel-heading"></div>
   </div>
-  <div class="logo_taux">
-    <img src="images/humidite.png" height="120" onclick="pre_loadGraph('humidite')"></img>
-    Humidité
-  </div>
-  <div class="logo_taux">
-    <img src="images/CO2.png" height="120" onclick="pre_loadGraph('CO2')"></img>
-    CO2
-  </div>
-  <div>
-    <input type='text' id='nbr_points' value='20'></input>
+  <div id="logo_tv" class="panel panel-default">
+    <img src="images/tv_off.png" height="120" id="image_tv">
+    <div id="tv_titre" class="panel-heading"></div>
   </div>
 </div>

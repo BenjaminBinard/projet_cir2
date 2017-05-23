@@ -23,6 +23,8 @@ if (is_dir('../'.$request))
 		sendHtmlAndJsData('taux', $request, $moduleName);
 	if($moduleName=='graph')
 		sendHtmlAndJsData('graph', $request, $moduleName);
+	if($moduleName=='utilisateurs')
+		sendHtmlAndJsData('utilisateurs', $request, $moduleName);
 
 }
 else
@@ -56,6 +58,22 @@ else
 				$data='ERROR';
 			}
 		}
+		if($request[0]=='taux'){
+			$humidite=db_recup_taux('humidite');
+			$temperature=db_recup_taux('temperature');
+			$CO2=db_recup_taux('CO2');
+			$four=db_recup_taux('four');
+			$tv=db_recup_taux('tv');
+			$data=array('humidite'=>$humidite,'temperature'=>$temperature,'CO2'=>$CO2, 'four'=>$four, 'tv'=>$tv);
+		}
+		if($request[0]=='utilisateurs'){
+			$utilisateurs=db_recup_taux('utilisateurs');
+			//$pas=db_recup_taux('pas')
+			if($utilisateurs[0]['CAR']=="")
+				$data='error';
+			else
+				$data=array('utilisateurs'=>$utilisateurs);
+		}
 		sendJsonData($data);
 	}
 
@@ -80,17 +98,29 @@ else
 		}
 		if($request[0]=='recuperation'){
 			$mail=$_GET['mail'];
-			sendJsonData($mail);
+			$mdp=db_recup_mdp($mail);
+			$to      = 'personne@example.com';
+			$subject = 'le sujet';
+			$message = 'Bonjour !';
+			$headers = 'From: webmaster@example.com' . "\r\n" .
+			'Reply-To: webmaster@example.com' . "\r\n" .
+			'X-Mailer: PHP/' . phpversion();
+			$test=mail($to, $subject, $message, $headers);
+			sendJsonData($test);
 		}
 		if($request[0]=='mon_compte'){
 			if(isset($_GET['nom']))
-				infosUpdate($_GET['nom'],'USER', 'LASTNAME');
+				$request=infosUpdate($_GET['nom'],'USER', 'LASTNAME');
 			if(isset($_GET['prenom']))
-					infosUpdate($_GET['prenom'],'USER', 'FIRSTNAME');
-			if(isset($_GET['mail']))
-				infosUpdate($_GET['mail'], 'USER', 'MAIL_USER');
+				$request=infosUpdate($_GET['prenom'],'USER', 'FIRSTNAME');
 			if(isset($_GET['password']))
-				infosUpdate($_GET['password'], 'USER', 'PASS');
+				$request=infosUpdate($_GET['password'], 'USER', 'PASS');
+			if(isset($_GET['mail'])){
+				$request=infosUpdate($_GET['mail'], 'USER', 'MAIL_USER');
+				$data='DECONNEXION';
+			}
+			else
+				sendJsonData($request);
 		}
 	}
 }

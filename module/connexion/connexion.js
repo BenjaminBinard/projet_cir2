@@ -43,5 +43,7 @@ function connexion(ajaxResponse){
     ajaxRequest('GET','php/request.php/module/mon_compte',loadHtmlAndJs);
     ajaxRequest('GET','php/request.php/is_connected',is_connected);
     $.cookie('login', data['mail']);
+  }else{
+    alert('Mot de passe ou mail érroné');
   }
 }

@@ -7,15 +7,16 @@ function chargement_mon_compte(){
   document.getElementById('graph').innerHTML='';
   document.getElementById('connexion').innerHTML='';
   document.getElementById('utilisateurs').innerHTML='';
+  document.getElementById('utilisateurs').style.top="10px";
 }
 
 function modifier_mes_infos(){
-  var nom=document.getElementById('nom');
-  var prenom=document.getElementById('prenom');
-  var mot_de_passe=document.getElementById('mot_de_passe');
-  var mot_de_passe_1=document.getElementById('mot_de_passe_1');
-  var mail=document.getElementById('mail');
-
+  var nom=document.getElementById('envoi_nom');
+  var prenom=document.getElementById('envoi_prenom');
+  var mot_de_passe=document.getElementById('envoi_mot_de_passe');
+  var mot_de_passe_1=document.getElementById('envoi_mot_de_passe_1');
+  var mail=document.getElementById('envoi_mail');
+  console.log(nom.value);
   if(nom.value!='' && prenom.value!='')
     ajaxRequest('PUT','php/request.php/mon_compte',callback,'nom='+nom.value+'&prenom='+prenom.value);
   if(mot_de_passe_1.value!='' && mot_de_passe.value!=''){
@@ -37,5 +38,12 @@ function afficher_mes_infos(ajaxResponse){
   document.getElementById('mail').innerHTML="Adresse mail : "+data[0]['mail'];
 }
 function callback(ajaxResponse){
+  var data = JSON.parse(ajaxResponse);
+  console.log(data);
+  if(data=='DECONNEXION'){
+    deconnexion();
+  }else {
+    ajaxRequest('GET','php/request.php/mon_compte',afficher_mes_infos);
+  }
 
 }

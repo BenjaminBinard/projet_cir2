@@ -1,22 +1,22 @@
-.logo_taux:hover{
+#logo_CO2,#logo_humidite,#logo_temperature:hover{
   cursor:pointer;
 }
 #taux{
-  position: relative;
+  /*position: relative;*/
+  height: 650px;
 }
 #logo{
-  width: 30%;
-  position: absolute;
-  left: 5%;
+  width: 25%;
+  left: 7%;
+  position: relative;
 }
 #graph{
-  width: 30%;
-  height: 10%;
-  position: absolute;
-  left:35%;
+  position: relative;
+  left: 40%;
+  top: -650px;
 }
 #logo_temperature{
-  padding-left: 8%;
+  /*padding-left: 8%;*/
 }
 .connexion,#sub_recup{
   left:20%;
@@ -44,4 +44,18 @@
 #sub_login, #sub_inscription{
   position: relative;
   left:30%;
+}
+#logo_horizontaux{
+  left: 40%;
+  top: -165px;
+  position: relative;
+}
+#logo_four,#logo_tv{
+  display: inline-block;
+}
+#utilisateurs{
+  width: 80%;
+  left: 10%;
+  position: relative;
+  top:10px;
 }

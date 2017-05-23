@@ -29,6 +29,7 @@ function verif_recuperation(){
 }
 
 function recuperation(ajaxResponse){
-  alert("Un mail avec votre mot de passe vous à été envoyé.");
+  console.log(ajaxResponse);
   ajaxRequest('GET', 'php/request.php/module/connexion', loadHtmlAndJs);
+  alert("Un mail avec votre mot de passe vous à été envoyé.");
 }

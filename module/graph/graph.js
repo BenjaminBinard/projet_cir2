@@ -1,4 +1,5 @@
 function pre_loadGraph(type){
+  document.getElementById('utilisateurs').style.top="-430px";
   var p = document.getElementById('stop_graphique');
   var att = document.createAttribute("value");
   att.value = type;
@@ -9,7 +10,7 @@ function pre_loadGraph(type){
 
 function loadGraph(ajaxResponse){
   document.getElementById('canvas').innerHTML='';
-  document.getElementById('canvas').innerHTML="<canvas id='updating-chart' width='500' height='300'>";
+  document.getElementById('canvas').innerHTML="<canvas id='updating-chart' width='600' height='400'>";
   var data;
   data=JSON.parse(ajaxResponse);
   console.log(data);

@@ -1,25 +1,26 @@
 <div id='mon_compte'>
   <div id='modifier_contact'>
-      <span>Chuck Norris</span><br>
-      <span>Second utilisateur de la salle</span>
+    <span>Chuck Norris</span><br>
+  </div>
+  <div id='mes_infos'>
+    <h3>Mes informations</h3>
+    <h5 id='nom'></h5>
+    <h5 id='prenom'></h5>
+    <h5 id='mail'></h5>
+  </div>
+  <div id='modifier_mes_infos'>
+    <br><br>
+    <h3>Modifier mes informations</h3>
+    <h5>Modifier Nom et Prenom</h5>
+    <div class="form-group">
+      <input type='textearea' id='envoi_nom' placeholder='nom' class="form-control"></input>
     </div>
-    <div id='mes_infos'>
-      <h3>Mes informations</h3>
-      <h5 id='nom'></h5>
-      <h5 id='prenom'></h5>
-      <h5 id='mail'></h5>
-    </div>
-    <div id='modifier_mes_infos'>
-      <br><br>
-      <h3>Modifier mes informations</h3>
-      <h5>Modifier Nom et Prenom</h5>
-      <input type='textearea' id='nom' placeholder='nom'></input><br>
-      <input type='textearea' id='prenom' placeholder='prenom'></input><br><br>
-      <h5>Modifier Mot de passe</h5>
-      <input type='textearea' id='mot_de_passe' placeholder='mot de passe'></input><br>
-      <input type='textearea' id='mot_de_passe_1' placeholder='Resaisir mot de passe'></input><br><br>
-      <h5>Modifier adresse mail</h5>
-      <input type='textearea' id='mail' placeholder='mail'></input><br><br>
-      <button id='modifier' onclick="modifier_mes_infos()">Modifier les champs remplis</button>
-    </div>
+    <input type='textearea' id='envoi_prenom' placeholder='prenom' class="form-control"></input><br><br>
+    <h5>Modifier Mot de passe</h5>
+    <input type='textearea' id='envoi_mot_de_passe' placeholder='mot de passe' class="form-control"></input><br>
+    <input type='textearea' id='envoi_mot_de_passe_1' placeholder='Resaisir mot de passe' class="form-control"></input><br><br>
+    <h5>Modifier adresse mail</h5>
+    <input type='textearea' id='envoi_mail' placeholder='mail' class="form-control"></input><br><br>
+    <button id='modifier' onclick="modifier_mes_infos()" class='btn btn-success'>Modifier les champs remplis</button>
+  </div>
 </div>
