@@ -1,5 +1,6 @@
 function pre_loadGraph(type){
-  //document.getElementById('utilisateurs').style.top="-430px";
+  document.getElementById('graph').style.backgroundColor='transparent';
+  document.getElementById('graph').style.width='100%';
   var p = document.getElementById('stop_graphique');
   var att = document.createAttribute("value");
   att.value = type;

@@ -15,8 +15,16 @@ if (is_dir('../'.$request))
 		sendHtmlAndJsData('header', $request, $moduleName);
 	if($moduleName=='mon_compte')
 		sendHtmlAndJsData('mon_compte', $request, $moduleName);
-	if($moduleName=='lab')
-		sendHtmlAndJsData('lab', $request, $moduleName);
+	if($moduleName=='lab'){
+		if($_GET['labo']=='Rennes'){
+			sendHtmlAndJsData('lab', $request, $moduleName);
+			$_SESSION['labo']='Rennes';
+		}
+		if($_GET['labo']=='Brest'){
+			sendHtmlAndJsData('lab', $request, $moduleName);
+			$_SESSION['labo']='Brest';
+		}
+	}
 	if($moduleName=='alerte')
 		sendHtmlAndJsData('alerte', $request, $moduleName);
 	if($moduleName=='taux')
@@ -69,11 +77,11 @@ else
 		}
 		if($request[0]=='utilisateurs'){
 			$utilisateurs=db_recup_taux('utilisateurs');
-			//$pas=db_recup_taux('pas')
-			if($utilisateurs[0]['CAR']=="")
+			$pas=db_recup_taux('pas');
+			/*if($utilisateurs[0]['CAR']=="")
 				$data='error';
-			else
-				$data=array('utilisateurs'=>$utilisateurs);
+			else*/
+				$data=array('utilisateurs'=>$utilisateurs,'pas'=>$pas);
 		}
 		if($request[0]=='alerte'){
 			$time=db_get_time();
@@ -105,6 +113,11 @@ else
 				$data=db_ajouter_contact($_GET['mail_contact'],$_GET['mail_user']);
 			}else {
 				$data='FALSE';
+			}
+		}
+		if($request[0]=='supprimer_supervise'){
+			if(isset($_GET['mail'])){
+				$data=db_suppression_supervise($_GET['mail']);
 			}
 		}
 		sendJsonData($data);

@@ -12,8 +12,13 @@
 }
 #graph{
   position: relative;
-  left: 40%;
+  left: 35%;
   top: -650px;
+  width: 55%;
+  background-color: bisque;
+  border-radius: 20px;
+  border-color: burlywood;
+  border-width: 12px;
 }
 #logo_temperature{
   /*padding-left: 8%;*/
@@ -68,16 +73,16 @@
   left:30%;
 }
 #logo_horizontaux{
-  left: 40%;
-  top: -165px;
+  left: 60%;
+  top: 40px;
   position: relative;
 }
 #logo_four,#logo_tv{
   display: inline-block;
 }
 #utilisateurs{
-  width: 80%;
-  left: 10%;
+  width: 50%;
+  left: 7%;
   position: relative;
   top: -400px;
 }
@@ -87,6 +92,16 @@
   width: 61%;
   height: 400px;
   left: -5%;
+}
+#titre_vide {
+  position: relative;
+  font-size: 20px;
+  left: 35%;
+  top: 40%;
+}
+#div_nbr_points{
+  position: relative;
+top: 130px;
 }
 @media all and (max-width: 640px) {
   #sub_login, #sub_inscription{
@@ -99,17 +114,21 @@
     margin-bottom: 3%;
   }
   #graph {
-    position: relative;
-    background-color: red;
-    left: 15%;
-    top: 50px;
-    width: 250px;
+      position: relative;
+      left: 15%;
+      top: 10px;
+      width: 250px;
+      height: 250px;
+      background-color: cadetblue;
+    border-radius: 20px;
+    border-color: burlywood;
+    border-width: 12px;
   }
   #utilisateurs {
       width: 80%;
+    top: -10px;
       left: 10%;
       position: relative;
-      top: 250px;
   }
   #taux {
     position: relative;
@@ -118,7 +137,13 @@
   }
   #logo_horizontaux {
     left: 5%;
-    top: 470px;
+    top: 380px;
     position: relative;
+  }
+  #titre_vide {
+    position: relative;
+    padding-left: 25%;
+    padding-top: 20%;
+    font-size: 20px;
   }
 }

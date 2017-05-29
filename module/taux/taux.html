@@ -1,8 +1,8 @@
 <div id="logo">
   <ul class="list-group">
     <li class="list-group-item">
-      <div class="panel panel-default" onclick="pre_loadGraph('temperature')">
-        <img src="images/temperature.png" height="120" id='logo_temperature' ></img>
+      <div class="panel panel-default" id='logo_temperature' onclick="pre_loadGraph('temperature')">
+        <img src="images/temperature.png" height="120"></img>
         Temperature
         <div class="panel-heading" id='temperature_taux'></div>
       </div>
@@ -22,7 +22,8 @@
       </div>
     </li>
     <li class="list-group-item">
-
+      Nombre de points du graphique
+      <input type='text' id='nbr_points' value='30'></input>
     </li>
   </ul>
 </div>
