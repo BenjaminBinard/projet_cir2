@@ -1,5 +1,6 @@
 chargement_mon_compte();
 ajaxRequest('GET','php/request.php/mon_compte',afficher_mes_infos);
+ajaxRequest('GET','php/request.php/user_room',afficher_utilisateurs_room);
 
 function chargement_mon_compte(){
   document.getElementById('taux').innerHTML='';
@@ -7,7 +8,7 @@ function chargement_mon_compte(){
   document.getElementById('graph').innerHTML='';
   document.getElementById('connexion').innerHTML='';
   document.getElementById('utilisateurs').innerHTML='';
-  document.getElementById('utilisateurs').style.top="10px";
+  //document.getElementById('utilisateurs').style.top="10px";
 }
 
 function modifier_mes_infos(){
@@ -24,8 +25,10 @@ function modifier_mes_infos(){
       ajaxRequest('PUT','php/request.php/mon_compte',callback,'password='+mot_de_passe.value);
   }
   if(mail.value!=''){
-    if(verification_mail(mail.value,2)=='TRUE')
+    if(verification_mail(mail.value,2)=='TRUE'){
+      alert("Votre mail à bien été modifié. Veuillez vous reconnecter pour mettre à jour cette donnée.");
       ajaxRequest('PUT','php/request.php/mon_compte',callback,'mail='+mail.value);
+    }
   }
 }
 function afficher_mes_infos(ajaxResponse){
@@ -45,5 +48,51 @@ function callback(ajaxResponse){
   }else {
     ajaxRequest('GET','php/request.php/mon_compte',afficher_mes_infos);
   }
+}
 
+function afficher_utilisateurs_room(ajaxResponse){
+  var data=JSON.parse(ajaxResponse);
+  console.log(data);
+  var i;
+  var j;
+  var texte='';
+  var texte2='';
+  for(i=0;i<data['mail_user'].length;i++){
+    texte=texte+"<div class='panel-heading'>"+data['mail_user'][i]['MAIL_USER']+"<button type='button' value='test' class='btn btn-default btn_suppression' value='"+data['mail_user'][i]['MAIL_USER']+"' onclick='supprimer_supervise() aria-label='Left Align' onclick='delete_contact(this)'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></div><div class='panel-body'>Chambre Numéro : "+data['mail_user'][i]['ID_ROOM']+"</br><br><div id='contact_boucle_"+i+"'><voir></voir></div><br><input type='textearea' id='"+data['mail_user'][i]['MAIL_USER']+"' placeholder='mail contact' class='form-control'></input><button type='button' class='btn btn-default' aria-label='Left Align' value='"+data['mail_user'][i]['MAIL_USER']+"' onclick='ajout_contact(this)'><span class='glyphicon glyphicon-plus-sign' aria-hidden='true'></span></button></div>";
+  }
+  document.getElementById('utilisateur_room').innerHTML=texte;
+  for(j=0;j<data['mail_user'].length;j++){
+    for(i=0;i<data['mail_contact'][j].length;i++){
+      texte2=texte2+data['mail_contact'][j][i]['MAIL_CONTACT']+"<button type='button' value='"+data['mail_contact'][j][i]['MAIL_CONTACT']+"&"+data['mail_user'][j]['MAIL_USER']+"' class='btn btn-default' aria-label='Left Align' onclick='delete_contact(this)'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button><br>";
+    }
+    document.getElementById('contact_boucle_'+j).innerHTML=texte2;
+    texte2='';
+  }
+}
+
+function ajout_contact(element){
+  var id=element.value;//id = mail_user
+  var nouveau_mail=document.getElementById(id).value;
+  var bool_mail=verification_mail(document.getElementById(id),1);
+  if(bool_mail=='TRUE')
+    ajaxRequest('GET','php/request.php/ajouter_contact',ajout_contact_callback, 'mail_contact='+nouveau_mail+'&mail_user='+id);
+  else {
+    alert("veuillez saisir une adresse mail valide.");
+  }
+}
+
+function delete_contact(element){
+  var mail=element.value.split("&");
+  console.log(mail);
+  ajaxRequest('GET','php/request.php/supprimer_contact',supression_contact, 'mail_contact='+mail[0]+'&mail_user='+mail[1]);
+}
+
+function ajout_contact_callback(ajaxResponse){
+  console.log(ajaxResponse);
+  ajaxRequest('GET','php/request.php/user_room',afficher_utilisateurs_room);
+}
+
+function supression_contact(ajaxResponse){
+  console.log(ajaxResponse);
+  ajaxRequest('GET','php/request.php/user_room',afficher_utilisateurs_room);
 }

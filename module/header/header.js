@@ -6,7 +6,7 @@ function is_connected(ajaxResponse){
   var texte;
   if(is_connected=='TRUE'){
     body=document.getElementById('if_connected');
-    texte="<button id='lab_rennes' class='btn btn-primary'>Lab Rennes</button><button id='lab_brest' class='btn btn-primary'>Lab Brest</button><button id='mon_compte_btn' class='btn btn-primary'>Mon compte</button><button id='deconnexion' class='btn btn-primary'>Deconnexion</button>";
+    texte="<button id='lab_rennes' class='btn btn-primary'>Lab Rennes</button><button id='mon_compte_btn' class='btn btn-primary'>Mon compte</button><button id='deconnexion' class='btn btn-primary'>Deconnexion</button>";
     body.innerHTML=texte;
 
     var attribute=document.createAttribute("onclick");

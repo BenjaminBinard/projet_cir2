@@ -1,26 +1,37 @@
-<div id='mon_compte'>
-  <div id='modifier_contact'>
-    <span>Chuck Norris</span><br>
+<ol class="breadcrumb">
+  <li><a href="#">Isen's lab</a></li>
+  <li class="active">Mon compte</li>
+</ol>
+
+<div class="panel panel-default corps_mon_compte" id='modifier_contact'>
+  <h3 id='titre_modif_superviseurs'>Modifier les contacts des supervisés</h3>
+  <div class="panel panel-default contact" id='utilisateur_room'>
+    <h5>Aucun utilisateurs enregistrés.</h5>
   </div>
-  <div id='mes_infos'>
-    <h3>Mes informations</h3>
-    <h5 id='nom'></h5>
-    <h5 id='prenom'></h5>
-    <h5 id='mail'></h5>
+  <button type="button" class="btn btn-success" id='nouveau_contact' onclick="ajaxRequest('GET','php/request.php/module/ajout_user',loadHtmlAndJs);"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Nouveau supervisé</button>
+</div>
+<div class="panel panel-default corps_mon_compte">
+<div id='mes_infos'>
+  <h3>Mes informations</h3>
+  <h5 id='nom'></h5>
+  <h5 id='prenom'></h5>
+  <h5 id='mail'></h5>
+</div>
+</div>
+<div class="panel panel-default corps_mon_compte">
+<div id='modifier_mes_infos'>
+  <br><br>
+  <h3>Modifier mes informations</h3>
+  <h5>Modifier Nom et Prenom</h5>
+  <div class="form-group">
+    <input type='textearea' id='envoi_nom' placeholder='nom' class="form-control"></input>
   </div>
-  <div id='modifier_mes_infos'>
-    <br><br>
-    <h3>Modifier mes informations</h3>
-    <h5>Modifier Nom et Prenom</h5>
-    <div class="form-group">
-      <input type='textearea' id='envoi_nom' placeholder='nom' class="form-control"></input>
-    </div>
-    <input type='textearea' id='envoi_prenom' placeholder='prenom' class="form-control"></input><br><br>
-    <h5>Modifier Mot de passe</h5>
-    <input type='textearea' id='envoi_mot_de_passe' placeholder='mot de passe' class="form-control"></input><br>
-    <input type='textearea' id='envoi_mot_de_passe_1' placeholder='Resaisir mot de passe' class="form-control"></input><br><br>
-    <h5>Modifier adresse mail</h5>
-    <input type='textearea' id='envoi_mail' placeholder='mail' class="form-control"></input><br><br>
-    <button id='modifier' onclick="modifier_mes_infos()" class='btn btn-success'>Modifier les champs remplis</button>
-  </div>
+  <input type='textearea' id='envoi_prenom' placeholder='prenom' class="form-control"></input><br><br>
+  <h5>Modifier Mot de passe</h5>
+  <input type='textearea' id='envoi_mot_de_passe' placeholder='mot de passe' class="form-control"></input><br>
+  <input type='textearea' id='envoi_mot_de_passe_1' placeholder='Resaisir mot de passe' class="form-control"></input><br><br>
+  <h5>Modifier adresse mail</h5>
+  <input type='textearea' id='envoi_mail' placeholder='mail' class="form-control"></input><br><br>
+  <button id='modifier' onclick="modifier_mes_infos()" class='btn btn-success' style="margin-bottom:3%;"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Modifier les champs remplis</button>
+</div>
 </div>

@@ -25,7 +25,8 @@ if (is_dir('../'.$request))
 		sendHtmlAndJsData('graph', $request, $moduleName);
 	if($moduleName=='utilisateurs')
 		sendHtmlAndJsData('utilisateurs', $request, $moduleName);
-
+	if($moduleName=='ajout_user')
+		sendHtmlAndJsData('ajout_user', $request, $moduleName);
 }
 else
 {
@@ -74,6 +75,38 @@ else
 			else
 				$data=array('utilisateurs'=>$utilisateurs);
 		}
+		if($request[0]=='alerte'){
+			$time=db_get_time();
+			$data=db_recup_alerte();
+			if($time[0]['MAX(DTIME)']!=$data[0]['DTIME'])
+				$data='NULL';
+		}
+		if($request[0]=='user_room'){
+			$data1=db_recup_user();
+			for($i=0;$i<sizeof($data1);$i++){
+				$data2[$i]=db_recup_contact($data1[$i]['MAIL_USER']);
+			}
+			$data=array('mail_user'=>$data1,'mail_contact'=>$data2);
+		}
+		if($request[0]=='ajout_user'){
+			$mail=$_GET['mail'];
+			$salle=$_GET['salle'];
+			$data=db_ajout_user($mail,$salle);
+		}
+		if($request[0]=='supprimer_contact'){
+			if(isset($_GET['mail_contact']) && isset($_GET['mail_user'])){
+				$data=db_suppression_mail_contact($_GET['mail_contact'],$_GET['mail_user']);
+			}else {
+				$data='FALSE';
+			}
+		}
+		if($request[0]=='ajouter_contact'){
+			if(isset($_GET['mail_contact']) && isset($_GET['mail_user'])){
+				$data=db_ajouter_contact($_GET['mail_contact'],$_GET['mail_user']);
+			}else {
+				$data='FALSE';
+			}
+		}
 		sendJsonData($data);
 	}
 
@@ -117,6 +150,8 @@ else
 				$request=infosUpdate($_GET['password'], 'USER', 'PASS');
 			if(isset($_GET['mail'])){
 				$request=infosUpdate($_GET['mail'], 'USER', 'MAIL_USER');
+				unset($_SESSION['mail']);
+				session_destroy();
 				$data='DECONNEXION';
 			}
 			else

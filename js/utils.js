@@ -66,8 +66,8 @@ function contour_vert(element){
 
 function verification_mail(mail, type){
   var bool_mail;
+  var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
   if(type==1){
-    var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
     if(!regex.test(mail.value)){
       contour_rouge(mail);
       bool_mail='FALSE';
@@ -78,7 +78,6 @@ function verification_mail(mail, type){
     }
   }
   if(type==2){
-    var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
     if(!regex.test(mail)){
       bool_mail='FALSE';
     }

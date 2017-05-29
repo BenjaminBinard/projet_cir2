@@ -24,15 +24,37 @@
   position: relative;
 }
 #modifier_contact{
-  background-color: lightgreen;
-  width: 80%;
   height: 30%;
+}
+.corps_mon_compte{
+  position: relative;
+  left:10%;
+  width: 80%;
+  padding-left: 3%;
+  padding-bottom: 3%;
+}
+.contact{
+  position: relative;
+  left:10%;
+  width: 80%;
+}
+.btn_supression{
+  position: relative;
+  right:0%;
 }
 #modifier_mes_infos, #mes_infos{
   left:20%;
   right: auto;
   width: 40%;
   position: relative;
+}
+#nouveau_contact{
+  left:40%;
+  position: relative;
+}
+#titre_modif_superviseurs{
+  margin-left: 2%;
+  margin-right: 2%;
 }
 .form-control{
   max-width: 40%;
@@ -57,5 +79,46 @@
   width: 80%;
   left: 10%;
   position: relative;
-  top:10px;
+  top: -400px;
+}
+#canvas{
+  position: relative;
+  /*background-color: lightblue;*/
+  width: 61%;
+  height: 400px;
+  left: -5%;
+}
+@media all and (max-width: 640px) {
+  #sub_login, #sub_inscription{
+    position: relative;
+    left:25%;
+  }
+  #nouveau_contact{
+    left:24%;
+    position: relative;
+    margin-bottom: 3%;
+  }
+  #graph {
+    position: relative;
+    background-color: red;
+    left: 15%;
+    top: 50px;
+    width: 250px;
+  }
+  #utilisateurs {
+      width: 80%;
+      left: 10%;
+      position: relative;
+      top: 250px;
+  }
+  #taux {
+    position: relative;
+    width: 850px;
+    height: 650px;
+  }
+  #logo_horizontaux {
+    left: 5%;
+    top: 470px;
+    position: relative;
+  }
 }

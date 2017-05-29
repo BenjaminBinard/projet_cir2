@@ -1,5 +1,5 @@
 function pre_loadGraph(type){
-  document.getElementById('utilisateurs').style.top="-430px";
+  //document.getElementById('utilisateurs').style.top="-430px";
   var p = document.getElementById('stop_graphique');
   var att = document.createAttribute("value");
   att.value = type;
@@ -59,26 +59,31 @@ function draw_my_chart_js(data,type, nbr){
     p_strokeColor="rgba( 23, 29, 35,1)";
     p_fillColor="rgba( 23, 29, 35,0.2)";
   }
-  var canvas = document.getElementById('updating-chart'),
-  ctx = canvas.getContext('2d'),
+  var canvas = document.getElementById('updating-chart');
+  ctx = canvas.getContext('2d');
+
   graph_data = {
     labels: data_time,
     datasets: [
       {
-        fillColor: p_fillColor,
-        strokeColor: p_strokeColor,
-        pointColor: p_pointColor,
-        pointStrokeColor: "#fff",
+        borderColor: p_fillColor,
+        pointBackgroundColor: p_strokeColor,
+        pointBorderColor: p_pointColor,
+        label : type,
+        borderWidth : '2',
         data: data_num
       }
     ]
   };
-  // Reduce the animation steps for demo clarity.
-  var myLiveChart = new Chart(ctx).Line(graph_data,{animation:0});
 
+  var myLineChart = new Chart(ctx, {
+    type: 'line',
+    data: graph_data,
+    options: {animation:0}
+});
 
   nbr=document.getElementById('nbr_points').value;
   if(type==document.getElementById('stop_graphique').value){
-    setTimeout(function(){ ajaxRequest('GET','php/request.php/graph',loadGraph,'type='+type+'&nbr='+nbr); }, 2000);
+    setTimeout(function(){ ajaxRequest('GET','php/request.php/graph',loadGraph,'type='+type+'&nbr='+nbr); }, 3000);
   }
 }
