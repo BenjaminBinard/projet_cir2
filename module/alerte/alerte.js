@@ -2,6 +2,7 @@ ajaxRequest('GET','php/request.php/alerte',loadAlerte);
 setTimeout(function(){ ajaxRequest('GET','php/request.php/alerte',loadAlerte); }, 60000);
 
 function loadAlerte(ajaxResponse){
+  document.getElementById('sub_alerte').innerHTML="<div class='alert alert-success' role='alert'><h3>Pas d'alerte en cours</h3></div>";
   var data=JSON.parse(ajaxResponse);
   var i;
   var alerte='';

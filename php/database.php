@@ -58,30 +58,30 @@ function mes_donnees($mail){
 
 function data_chart($type, $nbr){
   if($type=='CO2')
-    $request="SELECT NUM,DTIME FROM `VALUE` WHERE TYPE=2 ORDER BY DTIME DESC LIMIT $nbr";
+    $request="SELECT NUM,DTIME FROM `VALUE` WHERE ID_ROOM='".$_SESSION['labo']."' AND TYPE=2 ORDER BY DTIME DESC LIMIT $nbr";
   if($type=='humidite')
-    $request="SELECT NUM,DTIME FROM `VALUE` WHERE TYPE=3 ORDER BY DTIME DESC LIMIT $nbr";
+    $request="SELECT NUM,DTIME FROM `VALUE` WHERE ID_ROOM='".$_SESSION['labo']."' AND TYPE=3 ORDER BY DTIME DESC LIMIT $nbr";
   if($type=='temperature')
-    $request="SELECT NUM,DTIME FROM `VALUE` WHERE TYPE=4 ORDER BY DTIME DESC LIMIT $nbr";
+    $request="SELECT NUM,DTIME FROM `VALUE` WHERE ID_ROOM='".$_SESSION['labo']."' AND TYPE=4 ORDER BY DTIME DESC LIMIT $nbr";
   $result=execute_request_get($request);
   return $result;
 }
 
 function db_recup_taux($type){
   if($type=='CO2')
-    $request="SELECT NUM FROM `VALUE` WHERE TYPE=2 ORDER BY DTIME DESC LIMIT 1";
+    $request="SELECT NUM FROM `VALUE` WHERE ID_ROOM='".$_SESSION['labo']."' AND TYPE=2 ORDER BY DTIME DESC LIMIT 1";
   if($type=='humidite')
-    $request="SELECT NUM FROM `VALUE` WHERE TYPE=3 ORDER BY DTIME DESC LIMIT 1";
+    $request="SELECT NUM FROM `VALUE` WHERE ID_ROOM='".$_SESSION['labo']."' AND TYPE=3 ORDER BY DTIME DESC LIMIT 1";
   if($type=='temperature')
-    $request="SELECT NUM FROM `VALUE` WHERE TYPE=4 ORDER BY DTIME DESC LIMIT 1";
+    $request="SELECT NUM FROM `VALUE` WHERE ID_ROOM='".$_SESSION['labo']."' AND TYPE=4 ORDER BY DTIME DESC LIMIT 1";
   if($type=='four')
-    $request="SELECT CAR FROM `VALUE` WHERE TYPE=7 ORDER BY DTIME DESC LIMIT 1";
+    $request="SELECT CAR FROM `VALUE` WHERE ID_ROOM='".$_SESSION['labo']."' AND TYPE=7 ORDER BY DTIME DESC LIMIT 1";
   if($type=='tv')
-    $request="SELECT CAR FROM `VALUE` WHERE TYPE=6 ORDER BY DTIME DESC LIMIT 1";
+    $request="SELECT CAR FROM `VALUE` WHERE ID_ROOM='".$_SESSION['labo']."' AND TYPE=6 ORDER BY DTIME DESC LIMIT 1";
   if($type=='utilisateurs')
-    $request="SELECT CAR FROM `VALUE` WHERE TYPE=5 ORDER BY DTIME DESC LIMIT 1";
+    $request="SELECT CAR FROM `VALUE` WHERE ID_ROOM='".$_SESSION['labo']."' AND TYPE=5 ORDER BY DTIME DESC LIMIT 1";
   if($type=='pas')
-    $request="SELECT NUM FROM `VALUE` WHERE TYPE=8 ORDER BY DTIME DESC LIMIT 1";
+    $request="SELECT NUM FROM `VALUE` WHERE ID_ROOM=1 AND TYPE=8 ORDER BY DTIME DESC LIMIT 1";
   $result=execute_request_get($request);
   return $result;
 }
@@ -93,7 +93,7 @@ function db_recup_mdp($mail){
 }
 
 function db_recup_alerte(){
-  $request="SELECT DTIME, DETAIL FROM ALERT WHERE DTIME=(SELECT MAX(DTIME) FROM ALERT)";
+  $request="SELECT DTIME, DETAIL FROM ALERT WHERE ID_ROOM='".$_SESSION['labo']."' AND DTIME=(SELECT MAX(DTIME) FROM ALERT)";
   $result=execute_request_get($request);
   return $result;
 }

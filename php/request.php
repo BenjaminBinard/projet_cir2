@@ -1,6 +1,5 @@
 <?php
 include 'database.php';
-include 'graph.php';
 
 $request = substr($_SERVER['PATH_INFO'], 1);
 
@@ -17,12 +16,12 @@ if (is_dir('../'.$request))
 		sendHtmlAndJsData('mon_compte', $request, $moduleName);
 	if($moduleName=='lab'){
 		if($_GET['labo']=='Rennes'){
+			$_SESSION['labo']=1;
 			sendHtmlAndJsData('lab', $request, $moduleName);
-			$_SESSION['labo']='Rennes';
 		}
 		if($_GET['labo']=='Brest'){
+			$_SESSION['labo']=2;
 			sendHtmlAndJsData('lab', $request, $moduleName);
-			$_SESSION['labo']='Brest';
 		}
 	}
 	if($moduleName=='alerte')
@@ -88,6 +87,9 @@ else
 			$data=db_recup_alerte();
 			if($time[0]['MAX(DTIME)']!=$data[0]['DTIME'])
 				$data='NULL';
+			if(empty($data)){
+				$data='NULL';
+			}
 		}
 		if($request[0]=='user_room'){
 			$data1=db_recup_user();
