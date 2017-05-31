@@ -3,10 +3,14 @@
   <li class="active">Connexion</li>
 </ol>
 <div id="login">
-  <div id='sub_login'>
+  Mail
+  <div class='sub_login'>
   <div class="form-group">
     <input type="mail" placeholder="mail" id="mail" class="form-control">
   </div>
+</div>
+Mot de passe
+<div class='sub_login'>
   <div class="form-group">
     <input type="password" placeholder="password" id="password" class="form-control">
   </div>
@@ -14,6 +18,6 @@
   <div class="form-group" id='btn_connexion'>
     <input value="Se connecter" onclick="ajaxRequest('GET','php/request.php/connexion',verif_connexion);" class="btn btn-success"><br>
     <input value="Inscription" onclick="ajaxRequest('GET','php/request.php/module/inscription',loadHtmlAndJs);" class="btn btn-primary"><br>
-    <input value="Recupérer mon mot de passe" onclick="ajaxRequest('GET','php/request.php/module/recuperation',loadHtmlAndJs);" class="btn btn-primary"><br>
   </div>
+  <h5 id='mauvaises_infos'></h5>
 </div>

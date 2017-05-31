@@ -1,3 +1,4 @@
+//Chargement des éléments qui composent le labo
 document.getElementById('connexion').innerHTML='';
 document.getElementById('mon_compte').innerHTML='';
 

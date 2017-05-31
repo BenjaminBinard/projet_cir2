@@ -15,7 +15,7 @@
   left: 35%;
   top: -650px;
   width: 55%;
-  background-color: bisque;
+  background-color: #D2EAF6;
   border-radius: 20px;
   border-color: burlywood;
   border-width: 12px;
@@ -68,13 +68,12 @@
 #login, .form-group{
   text-align: center;
 }
-#sub_login, #sub_inscription{
+.sub_login, #sub_inscription{
   position: relative;
   left:30%;
 }
 #logo_horizontaux{
   left: 60%;
-  top: 40px;
   position: relative;
 }
 #logo_four,#logo_tv{
@@ -84,7 +83,7 @@
   width: 50%;
   left: 7%;
   position: relative;
-  top: -400px;
+  top: -260px;
 }
 #canvas{
   position: relative;
@@ -103,6 +102,17 @@
   position: relative;
 top: 130px;
 }
+
+#espace_historique_alerte{
+    width: 80%;
+    position: relative;
+    left: 10%;
+}
+
+#historique_alerte{
+    position: relative;
+    left: 7%;
+}
 @media all and (max-width: 640px) {
   #sub_login, #sub_inscription{
     position: relative;
@@ -114,21 +124,16 @@ top: 130px;
     margin-bottom: 3%;
   }
   #graph {
-      position: relative;
-      left: 15%;
-      top: 10px;
-      width: 250px;
-      height: 250px;
-      background-color: cadetblue;
-    border-radius: 20px;
-    border-color: burlywood;
-    border-width: 12px;
+    position: relative;
+    left: 10%;
+    top: 220px;
+    width: 250px;
+    height: 250px;
   }
   #utilisateurs {
-      width: 80%;
-    top: -10px;
-      left: 10%;
-      position: relative;
+    width: 80%;
+    top: 230px;
+    position: relative;
   }
   #taux {
     position: relative;
@@ -137,13 +142,13 @@ top: 130px;
   }
   #logo_horizontaux {
     left: 5%;
-    top: 380px;
+    top: 470px;
     position: relative;
   }
   #titre_vide {
     position: relative;
-    padding-left: 25%;
-    padding-top: 20%;
+    left: 45%;
+    top: 20%;
     font-size: 20px;
   }
 }

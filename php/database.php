@@ -29,6 +29,9 @@ function execute_request_get($request){
 function inscription($nom,$prenom,$mail,$password){
   $request="INSERT INTO USER (MAIL_USER, LASTNAME, FIRSTNAME, PASS) VALUES ('$mail','$nom','$prenom','$password')";
   execute_request_add($request);
+  $_SESSION['mail']=$mail;
+  $_SESSION['password']=$password;
+  return $request;
 }
 
 function connexion($mail,$password){
@@ -47,6 +50,7 @@ function connexion($mail,$password){
 function infosUpdate($donnees, $table, $column){
   $request="UPDATE $table SET $column = '$donnees' WHERE MAIL_USER="."'".$_SESSION['mail']."'";
   execute_request_add($request);
+  return $request;
 }
 
 function mes_donnees($mail){
@@ -81,7 +85,7 @@ function db_recup_taux($type){
   if($type=='utilisateurs')
     $request="SELECT CAR FROM `VALUE` WHERE ID_ROOM='".$_SESSION['labo']."' AND TYPE=5 ORDER BY DTIME DESC LIMIT 1";
   if($type=='pas')
-    $request="SELECT NUM FROM `VALUE` WHERE ID_ROOM=1 AND TYPE=8 ORDER BY DTIME DESC LIMIT 1";
+    $request="SELECT NUM FROM `VALUE` WHERE ID_ROOM='".$_SESSION['labo']."'  AND TYPE=8 ORDER BY DTIME DESC LIMIT 1";
   $result=execute_request_get($request);
   return $result;
 }
@@ -99,7 +103,7 @@ function db_recup_alerte(){
 }
 
 function db_get_time(){
-  $request="SELECT MAX(DTIME) FROM VALUE";
+  $request="SELECT MAX(DTIME) FROM VALUE WHERE ID_ROOM='".$_SESSION['labo']."'";
   $result=execute_request_get($request);
   return $result;
 }
@@ -121,9 +125,10 @@ function db_ajout_user($mail,$salle){
   $result=execute_request_get($request);
   $request="SELECT COUNT(MAIL_USER) FROM USER";
   $result2=execute_request_get($request);
+  //return array('1'=>$result,'2'=>$result2);
   for($i=0;$i<$result2[0]['COUNT(MAIL_USER)'];$i++){
     if($result[$i]['MAIL_USER']==$mail){
-      $request="INSERT INTO `USER_ROOM` (`ID_ROOM`, `MAIL_USER`, `START`, `END`) VALUES ('$salle','$mail', NULL, NULL);";
+      $request="INSERT INTO `USER_ROOM` (`ID_ROOM`, `MAIL_USER`) VALUES ('$salle','$mail');";
       execute_request_add($request);
       return $request;
     }else {
@@ -149,5 +154,15 @@ function db_suppression_supervise($mail){
   $request="DELETE FROM `USER_ROOM` WHERE MAIL_USER='$mail'";
   execute_request_add($request);
   return 'TRUE';
+}
+
+function db_recup_historique($nbr){
+  $request="SELECT DETAIL, DTIME, ID_ROOM FROM `ALERT` WHERE ID_ROOM='".$_SESSION['labo']."' ORDER BY DTIME DESC LIMIT $nbr";
+  return execute_request_get($request);
+}
+
+function db_recup_seuil(){
+  $request ="SELECT NAME, THRESHOLD_HIGH, THRESHOLD_LOW, ID_ROOM FROM `SENSOR`";
+  return execute_request_get($request);
 }
 ?>

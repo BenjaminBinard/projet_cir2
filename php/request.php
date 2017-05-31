@@ -43,7 +43,8 @@ else
 		if($request[0]=='graph'){
 			$type=$_GET['type'];
 			$nbr=$_GET['nbr'];
-			$data=array('donnees'=> data_chart($type, $nbr), 'type'=>$type, 'nbr'=>$nbr);
+			$seuil=db_recup_seuil();
+			$data=array('donnees'=> data_chart($type, $nbr), 'type'=>$type, 'nbr'=>$nbr, 'seuil'=>$seuil, 'room'=>$_SESSION['labo']);
 		}
 		if($request[0]=='is_connected'){
 			if(isset($_SESSION['mail'])){
@@ -72,7 +73,8 @@ else
 			$CO2=db_recup_taux('CO2');
 			$four=db_recup_taux('four');
 			$tv=db_recup_taux('tv');
-			$data=array('humidite'=>$humidite,'temperature'=>$temperature,'CO2'=>$CO2, 'four'=>$four, 'tv'=>$tv);
+			$seuil=db_recup_seuil();
+			$data=array('humidite'=>$humidite,'temperature'=>$temperature,'CO2'=>$CO2, 'four'=>$four, 'tv'=>$tv, 'seuil'=>$seuil, 'room'=>$_SESSION['labo']);
 		}
 		if($request[0]=='utilisateurs'){
 			$utilisateurs=db_recup_taux('utilisateurs');
@@ -122,6 +124,9 @@ else
 				$data=db_suppression_supervise($_GET['mail']);
 			}
 		}
+		if($request[0]=='historique_alerte'){
+			$data=db_recup_historique(3);
+		}
 		sendJsonData($data);
 	}
 
@@ -131,7 +136,8 @@ else
 			$prenom=$_GET['prenom'];
 			$mail=$_GET['mail'];
 			$password=$_GET['password'];
-			inscription($nom,$prenom,$mail,$password);
+			$data=inscription($nom,$prenom,$mail,$password);
+			sendJsonData($data);
 		}
 		if($request[0]=='connexion'){
 			$mail=$_GET['mail'];
@@ -168,6 +174,7 @@ else
 				unset($_SESSION['mail']);
 				session_destroy();
 				$data='DECONNEXION';
+				sendJsonData($data);
 			}
 			else
 				sendJsonData($request);

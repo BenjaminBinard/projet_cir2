@@ -1,5 +1,5 @@
 ajaxRequest('GET','php/request.php/is_connected',is_connected);
-
+//Verification de la connection. Charge le header si l'utilisateur est connecé
 function is_connected(ajaxResponse){
   var is_connected=JSON.parse(ajaxResponse);
   var body;
@@ -26,17 +26,11 @@ function is_connected(ajaxResponse){
     document.getElementById('deconnexion').setAttributeNode(attribute2);
 
   }else{
-    /*body=document.getElementById('if_not_connected');
-    texte="<button id='connexion_btn'>Connexion</button>";
-    body.innerHTML=texte;
-
-    var attribute=document.createAttribute("onclick");
-    attribute.value="ajaxRequest('GET','php/request.php/module/connexion',loadHtmlAndJs)";
-    document.getElementById('connexion_btn').setAttributeNode(attribute);*/
     ajaxRequest('GET','php/request.php/module/connexion',loadHtmlAndJs);
   }
 }
 
+//Retour de deconnexion. Charge la page d'acceuil (connexion)
 function deconnexion(ajaxResponse){
   document.getElementById('if_connected').innerHTML='';
   ajaxRequest('GET','php/request.php/is_connected',is_connected);

@@ -1,7 +1,7 @@
 chargement_mon_compte();
 ajaxRequest('GET','php/request.php/mon_compte',afficher_mes_infos);
 ajaxRequest('GET','php/request.php/user_room',afficher_utilisateurs_room);
-
+//Remet à vide les autres module
 function chargement_mon_compte(){
   document.getElementById('taux').innerHTML='';
   document.getElementById('alerte').innerHTML='';
@@ -12,6 +12,7 @@ function chargement_mon_compte(){
   //document.getElementById('utilisateurs').style.top="10px";
 }
 
+//Verification des données avant envoi
 function modifier_mes_infos(){
   var nom=document.getElementById('envoi_nom');
   var prenom=document.getElementById('envoi_prenom');
@@ -32,25 +33,35 @@ function modifier_mes_infos(){
     }
   }
 }
+//Affichage des informations personnelles de l'utilisateur
 function afficher_mes_infos(ajaxResponse){
   data=JSON.parse(ajaxResponse);
   if(data=='ERROR'){
-    alert("Vous tentez d'effectuer une action malicieuse !");
+    ajaxRequest('GET','php/request.php/module/connexion',loadHtmlAndJs);
   }
   document.getElementById('nom').innerHTML="Nom : "+data[0]['LASTNAME'];
   document.getElementById('prenom').innerHTML="Prenom : "+data[0]['FIRSTNAME'];
   document.getElementById('mail').innerHTML="Adresse mail : "+data[0]['mail'];
 }
+//Fonction de retour de la mise à jour des informations personnelles
 function callback(ajaxResponse){
   var data = JSON.parse(ajaxResponse);
   console.log(data);
+  document.getElementById('envoi_nom').value='';
+  document.getElementById('envoi_prenom').value='';
+  document.getElementById('envoi_mot_de_passe').value='';
+  document.getElementById('envoi_mot_de_passe_1').value='';
+  document.getElementById('envoi_mail').value='';
+
   if(data=='DECONNEXION'){
-    deconnexion();
+    alert("Vous allez être déconnecté pour que les effets soient pris en compte.");
+    location.href='';
   }else {
     ajaxRequest('GET','php/request.php/mon_compte',afficher_mes_infos);
   }
+  document.getElementById('message_modif').innerHTML='Les modifications ont bien été prises en compte.';
 }
-
+//Affichage des utilisateurs supervisés
 function afficher_utilisateurs_room(ajaxResponse){
   var data=JSON.parse(ajaxResponse);
   console.log(data);
@@ -71,11 +82,13 @@ function afficher_utilisateurs_room(ajaxResponse){
   }
 }
 
+//suppression des supervisés
 function supprimer_supervise(element){
   console.log(element.value);
   ajaxRequest('GET','php/request.php/supprimer_supervise',supprimer_supervise_callback, 'mail='+element.value);
 }
 
+//ajout d'un contact à un supervisé donné
 function ajout_contact(element){
   var id=element.value;//id = mail_user
   var nouveau_mail=document.getElementById(id).value;

@@ -1,17 +1,10 @@
-chargement_connexion();
+document.getElementById('taux').innerHTML='';
+document.getElementById('alerte').innerHTML='';
+document.getElementById('graph').innerHTML='';
+document.getElementById('mon_compte').innerHTML='';
+document.getElementById('utilisateurs').innerHTML='';
 
-function chargement_connexion(){
-  var texte;
-  var body;
-
-  document.getElementById('taux').innerHTML='';
-  document.getElementById('alerte').innerHTML='';
-  document.getElementById('graph').innerHTML='';
-  document.getElementById('mon_compte').innerHTML='';
-  document.getElementById('utilisateurs').innerHTML='';
-
-}
-
+//Verfication de la connexion
 function verif_connexion(){
   var mail=document.getElementById('mail');
   var mot_de_passe=document.getElementById('password');
@@ -37,6 +30,7 @@ function verif_connexion(){
   }
 }
 
+//Retour de connexion. SI connecté, alors chargement du compte, sinon message d'alerte
 function connexion(ajaxResponse){
   var data=JSON.parse(ajaxResponse);
   if(data['is_connected']=='TRUE'){
@@ -44,6 +38,8 @@ function connexion(ajaxResponse){
     ajaxRequest('GET','php/request.php/is_connected',is_connected);
     $.cookie('login', data['mail']);
   }else{
-    alert('Mot de passe ou mail érroné');
+    contour_rouge(document.getElementById('mail'));
+    contour_rouge(document.getElementById('password'));
+    document.getElementById('mauvaises_infos').innerHTML='Mot de passe ou mail érroné.';
   }
 }

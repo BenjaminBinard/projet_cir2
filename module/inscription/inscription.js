@@ -1,11 +1,4 @@
-chargement_inscription();
-
-function chargement_inscription(){
-  console.log("On est la ici a!");
-  var texte;
-  var body;
-}
-
+//Verification des champs avant inscription
 function verification_champs(){
   var nom = document.getElementById('nom');
   var prenom = document.getElementById('prenom');
@@ -61,8 +54,8 @@ function verification_champs(){
   }
 }
 
+//Retour d'inscription. Chargement du compte et du menu
 function sendInscription(ajaxResponse){
-  console.log(ajaxResponse);
   ajaxRequest('GET', 'php/request.php/module/mon_compte', loadHtmlAndJs);
   ajaxRequest('GET', 'php/request.php/module/header', loadHtmlAndJs);
 }

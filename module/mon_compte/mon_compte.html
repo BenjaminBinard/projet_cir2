@@ -2,14 +2,8 @@
   <li class="active">Isen's lab</li>
   <li class="active">Mon compte</li>
 </ol>
+<input id='stop_taux' style=" visibility: hidden;" value='stop_taux'></input>
 
-<div class="panel panel-default corps_mon_compte" id='modifier_contact'>
-  <h3 id='titre_modif_superviseurs'>Modifier les contacts des supervisés</h3>
-  <div class="panel panel-default contact" id='utilisateur_room'>
-    <h5>Aucun utilisateurs enregistrés.</h5>
-  </div>
-  <button type="button" class="btn btn-success" id='nouveau_contact' onclick="ajaxRequest('GET','php/request.php/module/ajout_user',loadHtmlAndJs);"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Nouveau supervisé</button>
-</div>
 <div class="panel panel-default corps_mon_compte">
 <div id='mes_infos'>
   <h3>Mes informations</h3>
@@ -18,6 +12,7 @@
   <h5 id='mail'></h5>
 </div>
 </div>
+
 <div class="panel panel-default corps_mon_compte">
 <div id='modifier_mes_infos'>
   <br><br>
@@ -28,10 +23,19 @@
   </div>
   <input type='textearea' id='envoi_prenom' placeholder='prenom' class="form-control"></input><br><br>
   <h5>Modifier Mot de passe</h5>
-  <input type='textearea' id='envoi_mot_de_passe' placeholder='mot de passe' class="form-control"></input><br>
-  <input type='textearea' id='envoi_mot_de_passe_1' placeholder='Resaisir mot de passe' class="form-control"></input><br><br>
+  <input type='password' id='envoi_mot_de_passe' placeholder='mot de passe' class="form-control"></input><br>
+  <input type='password' id='envoi_mot_de_passe_1' placeholder='Resaisir mot de passe' class="form-control"></input><br><br>
   <h5>Modifier adresse mail</h5>
   <input type='textearea' id='envoi_mail' placeholder='mail' class="form-control"></input><br><br>
   <button id='modifier' onclick="modifier_mes_infos()" class='btn btn-success' style="margin-bottom:3%;"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Modifier les champs remplis</button>
+  <h3 id='message_modif'><h3>
 </div>
+</div>
+
+<div class="panel panel-default corps_mon_compte" id='modifier_contact'>
+  <h3 id='titre_modif_superviseurs'>Modifier les contacts des supervisés</h3>
+  <div class="panel panel-default contact" id='utilisateur_room'>
+    <h5>Aucun utilisateurs enregistrés.</h5>
+  </div>
+  <button type="button" class="btn btn-success" id='nouveau_contact' onclick="ajaxRequest('GET','php/request.php/module/ajout_user',loadHtmlAndJs);"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Nouveau supervisé</button>
 </div>
